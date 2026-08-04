@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');//this line work as a bridge between node js application and mongodb
-const userSchema = new mongoose.Schema({// this is blue print that decide how a user data structured un data base
-    name:{
+const userSchema = new mongoose.Schema({
+    name: {
         type: String,
-        requried: true
+        required: true
     },
 
-    email:{
+    email: {
         type: String,
-        requried: true,
+        required: true,
         unique: true
     },
-    password:{
-        type:String,
-        requried:true,
 
-
-
+    password: {
+        type: String,
+        required: true
     },
-    createedAt:{
-        type:Date,
-        default:Date.now
+
+    role: {
+        type: String,
+        enum: ["candidate", "interviewer"],
+        default: "candidate"
     }
-});
+})
 const User = mongoose.model('User', userSchema);
 module.exports = User;
