@@ -38,10 +38,11 @@ const signupService = async ({ name, email, password, role }) => {
     token,
 
     user:{
-        id:newUser._id,
-        name:newUser.name,
-        email:newUser.email
-    }
+    id: newUser._id,
+    name: newUser.name,
+    email: newUser.email,
+    role: newUser.role
+}
 }
 };
 
