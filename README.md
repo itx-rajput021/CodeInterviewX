@@ -1,3 +1,46 @@
+# CodeInterviewX
+
+A role-based technical interview platform with authentication, scheduling, realtime rooms, shared code editing, and chat.
+
+## Features
+
+- Candidate and interviewer signup/login
+- JWT authentication
+- Role-based dashboards
+- Interview scheduling, listing, updates and cancellation
+- Realtime interview rooms with Socket.IO
+- Shared code editor and room chat
+- Browser-side JavaScript execution demo
+- MongoDB support with an automatic in-memory demo fallback
+
+## Run locally
+
+Start the backend:
+
+```powershell
+cd server
+npm install
+node index.js
+```
+
+The backend runs at `http://localhost:5000`. Configure `server/.env` with `PORT`, `MONGO_URI`, and `JWT_SECRET`.
+
+Start the frontend:
+
+```powershell
+cd client/Inter-view
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+## Production note
+
+The JavaScript runner is browser-side demo execution. A production system requires isolated containers or an external code-execution service with CPU, memory, timeout, and network controls.
+
+## Legacy Vite template
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.

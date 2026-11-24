@@ -1,19 +1,18 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
-module.exports = function(req, res, next){
-
-    const token = req.header('Authorization');
-    if(!token) return res.status(401).json({message:"Acess denied"});
-    try{
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded.userId;
-        next();
-
-    }catch(error){
-        res.status(400).json({message:"Tokien is not Valid"});
-        
-
+module.exports = function (req, res, next) {
+    const header = req.header('Authorization');
+    if (!header?.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Access denied' });
     }
 
-}
+    try {
+        const token = header.slice(7);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = { userId: String(decoded.userId), role: decoded.role, name: decoded.name };
+        req.userRole = decoded.role;
+        next();
+    } catch (error) {
+        return res.status(401).json({ message: 'Token is not valid' });
+    }
+};
